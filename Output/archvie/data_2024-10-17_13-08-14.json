@@ -1,0 +1,10 @@
+{
+    "op": "lessonfinished",
+    "lessonid": "1269233303297567616",
+    "event": {
+        "type": "event",
+        "title": "ÏÂ¿ÎÀ²£¡",
+        "code": "LESSON_FINISH",
+        "dt": 1729141694262
+    }
+}

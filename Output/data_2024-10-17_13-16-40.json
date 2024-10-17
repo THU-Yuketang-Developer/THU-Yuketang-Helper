@@ -1,0 +1,37 @@
+{
+    "op": "hello",
+    "lessonid": "1269219809936386944",
+    "livestatus": 0,
+    "livevoice": 0,
+    "liveid": "1269240186737721856",
+    "caster": "false",
+    "timeline": [
+        {
+            "type": "event",
+            "title": "\u4e0a\u8bfe\u5566\uff01",
+            "code": "LESSON_START",
+            "dt": 1729139593173
+        },
+        {
+            "type": "event",
+            "title": "\u8001\u5e08\u5f00\u542f\u4e86\u76f4\u64ad",
+            "code": "LIVE_ON",
+            "dt": 1729139959847
+        },
+        {
+            "type": "event",
+            "title": "\u8001\u5e08\u5173\u95ed\u4e86\u76f4\u64ad",
+            "code": "LIVE_OFF",
+            "dt": 1729142001136
+        },
+        {
+            "type": "event",
+            "title": "\u8001\u5e08\u5f00\u542f\u4e86\u76f4\u64ad",
+            "code": "LIVE_ON",
+            "dt": 1729142020937
+        }
+    ],
+    "addinversion": 5.2,
+    "interactive": false,
+    "danmu": false
+}

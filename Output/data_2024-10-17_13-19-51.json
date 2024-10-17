@@ -1,0 +1,31 @@
+{
+    "op": "showpresentation",
+    "lessonid": "1269241688776616832",
+    "presentation": "1269241734544862080",
+    "dt": 1729142392149,
+    "timeline": [
+        {
+            "type": "event",
+            "title": "\u65b0\u5e7b\u706f\u7247: 1",
+            "code": "SHOW_PRESENTATION",
+            "replace": [
+                "1"
+            ],
+            "dt": 1729142392150
+        },
+        {
+            "type": "slide",
+            "pres": "1269241734544862080",
+            "si": 1,
+            "sid": "1269241734553250688",
+            "step": -1,
+            "total": 0,
+            "dt": 1729142392150
+        }
+    ],
+    "unlockedproblem": [],
+    "slideindex": 1,
+    "slideid": "1269241734553250688",
+    "shownow": true,
+    "danmu": false
+}

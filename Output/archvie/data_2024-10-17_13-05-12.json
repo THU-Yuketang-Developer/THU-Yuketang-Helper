@@ -1,0 +1,20 @@
+{
+    "op": "slidenav",
+    "lessonid": "1269233303297567616",
+    "unlockedproblem": [
+        "1269233415302349312"
+    ],
+    "danmu": false,
+    "shownow": true,
+    "to": "student",
+    "slide": {
+        "type": "slide",
+        "pres": "1269233415268794880",
+        "si": 3,
+        "sid": "1269233415310737920",
+        "step": -1,
+        "total": 0,
+        "dt": 1729141512182
+    },
+    "im": false
+}

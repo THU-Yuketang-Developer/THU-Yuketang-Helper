@@ -1,0 +1,48 @@
+{
+    "op": "hello",
+    "lessonid": "1269237505553968000",
+    "livestatus": 0,
+    "livevoice": 0,
+    "timeline": [
+        {
+            "type": "event",
+            "title": "ÉÏ¿ÎÀ²£¡",
+            "code": "LESSON_START",
+            "dt": 1729141703096
+        },
+        {
+            "type": "event",
+            "title": "ÐÂ»ÃµÆÆ¬: 1",
+            "code": "SHOW_PRESENTATION",
+            "replace": [
+                "1"
+            ],
+            "dt": 1729141714093
+        },
+        {
+            "type": "slide",
+            "pres": "1269237550886093312",
+            "si": 1,
+            "sid": "1269237550902870528",
+            "step": -1,
+            "total": 0,
+            "dt": 1729141714094
+        },
+        {
+            "type": "slide",
+            "pres": "1269237550886093312",
+            "si": 2,
+            "sid": "1269237550911259136",
+            "step": -1,
+            "total": 0,
+            "dt": 1729141723472
+        }
+    ],
+    "addinversion": 5.2,
+    "interactive": false,
+    "danmu": false,
+    "presentation": "1269237550886093312",
+    "slideindex": 2,
+    "slideid": "1269237550911259136",
+    "unlockedproblem": []
+}
