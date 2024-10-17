@@ -76,7 +76,7 @@ class Lesson:
             # threading.Thread(target=say_something,args=(meg,)).start()
             self.add_message(meg,4)
             return False
-    
+
     def on_open(self, wsapp):
         self.handshake = {"op":"hello","userid":self.user_uid,"role":"student","auth":self.auth,"lessonid":self.lessonid}
         wsapp.send(json.dumps(self.handshake))
@@ -93,7 +93,13 @@ class Lesson:
         return dict_result(r.text)["data"]["lessonToken"]
 
     def on_message(self, wsapp, message):
+
+        def store_data(data: dict, filename_suffix: str = ''):
+            with open(f"Output/{filename_suffix}_{time.strftime('%Y-%m-%d_%H-%M-%S', time.localtime())}.json", "w") as f:
+                json.dump(data, f, indent=4)
+
         data = dict_result(message)
+        store_data(data=data, filename_suffix='data')
         op = data["op"]
         if op == "hello":
             presentations = list(set([slide["pres"] for slide in data["timeline"] if slide["type"]=="slide"]))
@@ -102,6 +108,7 @@ class Lesson:
                 presentations.append(current_presentation)
             for presentationid in presentations:
                 self.problems_ls.extend(self.get_problems(presentationid))
+                store_data(data=self.problems_ls, filename_suffix='problems_ls_op_hello')
             self.unlocked_problem = data["unlockedproblem"]
             for problemid in self.unlocked_problem:
                 self._current_problem(wsapp, problemid)
@@ -114,8 +121,10 @@ class Lesson:
             wsapp.close()
         elif op == "presentationupdated":
             self.problems_ls.extend(self.get_problems(data["presentation"]))
+            store_data(data=self.problems_ls, filename_suffix='problems_ls_op_presentationupdated')
         elif op == "presentationcreated":
             self.problems_ls.extend(self.get_problems(data["presentation"]))
+            store_data(data=self.problems_ls, filename_suffix='problems_ls_op_presentationcreated')
         elif op == "newdanmu" and self.config["auto_danmu"]:
             current_content = data["danmu"].lower()
             uid = data["userid"]
@@ -198,12 +207,12 @@ class Lesson:
             self.add_message(meg,4)
             # threading.Thread(target=say_something,args=(meg,)).start()
 
-    
+
     def _current_problem(self, wsapp, promblemid):
         # 为获取已解锁的问题详情信息，向wsapp发送probleminfo
         query_problem = {"op":"probleminfo","lessonid":self.lessonid,"problemid":promblemid,"msgid":1}
         wsapp.send(json.dumps(query_problem))
-    
+
     def start_lesson(self, callback):
         self.auth = self.checkin_class()
         rtn = self.get_lesson_info()
@@ -220,7 +229,7 @@ class Lesson:
         self.del_course(index)
         # threading.Thread(target=say_something,args=(meg,)).start()
         return callback(self)
-    
+
     def send_danmu(self,content):
         url = "https://pro.yuketang.cn/api/v3/lesson/danmu/send"
         data = {
@@ -240,12 +249,12 @@ class Lesson:
         else:
             meg = "%s弹幕发送失败！内容：%s" % (self.lessonname,content)
         self.add_message(meg,1)
-    
+
     def get_lesson_info(self):
         url = "https://pro.yuketang.cn/api/v3/lesson/basic-info"
         r = requests.get(url=url,headers=self.headers,proxies={"http": None,"https":None})
         return dict_result(r.text)["data"]
-        
+
 
     def __eq__(self, other):
         return self.lessonid == other.lessonid
@@ -253,7 +262,7 @@ class Lesson:
 class User:
     def __init__(self, uid):
         self.uid = uid
-    
+
     def get_userinfo(self, classroomid, headers):
         r = requests.get("https://pro.yuketang.cn/v/course_meta/fetch_user_info_new?query_user_id=%s&classroom_id=%s" % (self.uid,classroomid),headers=headers,proxies={"http": None,"https":None})
         data = dict_result(r.text)["data"]
