@@ -6,6 +6,27 @@ import requests
 import random
 import os
 import sys
+import time
+
+from zhipuai import ZhipuAI
+
+# Add your zhipuai api key here
+zhipuai_api_key = "YOUR_API_KEY"
+
+zhipuai_client = ZhipuAI(api_key=zhipuai_api_key)
+
+def get_zhipuai_response(messages: list | str):
+    if isinstance(messages, str):
+        messages = [messages]
+    messages = [{"role": "user", "content": message} for message in messages]
+    response = zhipuai_client.chat.completions.create(
+        model="glm-4",
+        messages=messages,
+    )
+    print(response) # can be removed later
+
+    return response.choices[0].message.content
+
 
 lock = threading.Lock()
 
@@ -14,7 +35,7 @@ def say_something(text):
     lock.acquire()
     pyttsx3.speak(text)
     lock.release()
-    
+
 def dict_result(text):
     # json string 转 dict object
     return dict(json.loads(text))
